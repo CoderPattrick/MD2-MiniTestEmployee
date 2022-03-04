@@ -2,7 +2,7 @@ package Employee;
 
 public class PartTimeEmployee extends Employee{
 
-    public static final int SALARYPERHOUR = 100000;
+    public static final int SALARY_PER_HOUR = 100000;
 
     public PartTimeEmployee() {
     }
@@ -11,11 +11,11 @@ public class PartTimeEmployee extends Employee{
     @Override
     public String toString() {
         return "PartTimeEmployee{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", phone='" + phone + '\'' +
-                ", Email='" + Email + '\'' +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", age=" + getAge() +
+                ", phone='" + getPhone() + '\'' +
+                ", Email='" + getEmail() + '\'' +
                 ", workHour=" + workHour +
                 '}';
     }
@@ -38,7 +38,7 @@ public class PartTimeEmployee extends Employee{
     }
     @Override
     public  double getSalary(){
-        double result = workHour* SALARYPERHOUR;
+        double result = workHour* SALARY_PER_HOUR;
         return result;
     }
 }

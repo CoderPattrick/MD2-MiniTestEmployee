@@ -1,13 +1,15 @@
 package Employee;
 
-public abstract class Employee {
+import java.io.Serializable;
+
+public abstract class Employee implements Serializable {
     public Employee() {
     }
-    String id;
-    String name;
-    int age;
-    String phone;
-    String Email;
+    private String id;
+    private String name;
+    private int age;
+    private String phone;
+    private String Email;
 
     @Override
     public String toString() {
