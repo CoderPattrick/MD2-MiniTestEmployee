@@ -1,5 +1,4 @@
 package Employee;
-
 import java.io.Serializable;
 
 public abstract class Employee implements Serializable {

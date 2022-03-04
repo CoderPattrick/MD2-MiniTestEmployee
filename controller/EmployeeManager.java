@@ -21,11 +21,20 @@ public class EmployeeManager {
         IOtool.writeFile(controllerList);
         displayCompletion();
     }
-    public Employee getEmployeeByInput(int choice){
-        Employee newEmployee=null;
-        System.out.println("id: ");
+    public String getIdByInput(){
         Scanner inputID = new Scanner(System.in);
         String id = inputID.nextLine();
+        while (indexOfEmployeeById(id)!=-1){
+            System.err.print("\nId đã tồn tại, mời nhập lại: ");
+            return getIdByInput();
+        }
+        return id;
+    }
+    public Employee getEmployeeByInput(int choice){
+        Employee newEmployee;
+        System.out.println("id: ");
+        String id = getIdByInput();
+
         System.out.println("name: ");
         Scanner inputName = new Scanner(System.in);
         String name = inputName.nextLine();
@@ -106,7 +115,6 @@ public class EmployeeManager {
         System.out.println("Id không tồn tại, xóa thất bại!");
     }
     public void removeEmployee(Employee employee){
-        controllerList = IOtool.readFile();
         controllerList.remove(employee);
         IOtool.writeFile(controllerList);
     }
@@ -134,8 +142,7 @@ public class EmployeeManager {
     public void setCommonInfo(Employee employee){
 
         System.out.println("id: ");
-        Scanner inputID = new Scanner(System.in);
-        String id = inputID.nextLine();
+        String id = getIdByInput();
         employee.setId(id);
 
         System.out.println("name: ");
