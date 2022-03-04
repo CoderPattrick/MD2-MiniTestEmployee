@@ -2,7 +2,7 @@ package Employee;
 
 public class PartTimeEmployee extends Employee{
 
-    public static final int SALARY_PER_HOUR = 100000;
+    public static final int SALARY_PER_HOUR = 100;
 
     public PartTimeEmployee() {
     }
