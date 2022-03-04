@@ -90,26 +90,7 @@ public class EmployeeManager {
         }
         return -1;
     }
-    public ArrayList<Employee> getEmployeeByAge(int from,int to) throws NullPointerException{
-        ArrayList<Employee> tempList = null;
-        for (Employee e:controllerList
-             ) {
-            if(e.getAge()>=from && e.getAge()<=to){
-                tempList.add(e);
-            }
-        }
-        return tempList;
-    }
-    public ArrayList<Employee> getEmployeeByAge(int age) throws NullPointerException{
-        ArrayList<Employee> tempList = null;
-        for (Employee e:controllerList
-             ) {
-            if((e.getAge())==age){
-                tempList.add(e);
-            }
-        }
-        return tempList;
-    }
+
 
     public void removeEmployeeById(){
         Scanner input = new Scanner(System.in);
@@ -246,6 +227,27 @@ public class EmployeeManager {
         }
         return false;
     }
+    public ArrayList<Employee> getEmployeeByAge(int from,int to){
+        ArrayList<Employee> tempList = new ArrayList<>();
+        for (Employee e:controllerList
+        ) {
+            if(e.getAge()>=from && e.getAge()<=to){
+                tempList.add(e);
+            }
+        }
+        return tempList;
+    }
+    public ArrayList<Employee> getEmployeeByAge(int age){
+        ArrayList<Employee> tempList = new ArrayList<>();
+        for (Employee e:controllerList
+        ) {
+            int elementAge = e.getAge();
+            if(elementAge==age){
+                tempList.add(e);
+            }
+        }
+        return tempList;
+    }
 
     public void displayEmployeeByAge(){
         ArrayList<Employee> list = null;
@@ -256,31 +258,28 @@ public class EmployeeManager {
         int choice = input.nextInt();
         switch (choice){
             case 1:
-                System.out.print("\nTuổi chính xác của nhân viên bạn muốn tìm: ");
+                System.out.print("Tuổi chính xác của nhân viên bạn muốn tìm: ");
                 Scanner inputAge = new Scanner(System.in);
                 int age = inputAge.nextInt();
-                try{
-                    list = getEmployeeByAge(age);
-                }catch (NullPointerException e){
+                list = getEmployeeByAge(age);
+                if(list.size()==0){
                     System.err.println("Không có nhân viên ở độ tuổi này!");
                     return;
                 }
                 displaySpecifiedList(list);
                 break;
             case 2:
-                System.out.print("\nĐộ tuổi từ: ");
+                System.out.print("Độ tuổi từ: ");
                 Scanner inputFrom = new Scanner(System.in);
                 int from = inputFrom.nextInt();
 
-                System.out.print("\nĐến: ");
+                System.out.print("Đến: ");
                 Scanner inputTo = new Scanner(System.in);
                 int to = inputTo.nextInt();
-
-                try{
-                    list = getEmployeeByAge(from,to);
-                }
-                catch (NullPointerException e){
+                list = getEmployeeByAge(from,to);
+                if(list.size()==0){
                     System.err.println("Không có nhân viên ở độ tuổi này!");
+                    return;
                 }
                 displaySpecifiedList(list);
                 break;
@@ -305,7 +304,7 @@ public class EmployeeManager {
         System.out.println("Complete!");
     }
     public void displaySpecifiedList(ArrayList<Employee> list){
-        for (Employee e: controllerList
+        for (Employee e: list
              ) {
             System.out.println(e);
         }
