@@ -1,10 +1,11 @@
-import Employee.Employee;
+import employee.Employee;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class EmployeeControlClient {
+public class Client {
     private static EmployeeManager controller = new EmployeeManager();
     private static IOManager IOtool = new IOManagerEmp();
+    private static ArrayList<Employee> clientList = IOManagerEmp.savedList;
 
     public static void main(String[] args) {
         int choice=0;
@@ -31,7 +32,7 @@ public class EmployeeControlClient {
                     break;
                 case 5:
                     ArrayList<Employee> tempList = controller.getEmployeeWithSalaryLowerThanAverage();
-                    if(tempList.size()<2){
+                    if(clientList.size()<2){
                         System.err.println("Cant do this action due to lack of employee!");
                     }
                     else {

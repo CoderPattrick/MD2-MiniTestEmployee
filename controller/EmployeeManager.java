@@ -1,4 +1,4 @@
-import Employee.*;
+import employee.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class EmployeeManager {
 
     public void addEmployee(){
         int choice;
-        System.out.println("Nhân viên mới là kiểu 1 (Full-time) hay 2 (Part-time)? Nhập 1 hoặc 2:");
+        System.out.println("Nhân viên mới là kiểu 1 (Full-time) hay 2 (Part-time)?\nNhập 1 hoặc 2:");
         Scanner input = new Scanner(System.in);
         choice = input.nextInt();
         while(choice!=1&&choice!=2){
@@ -25,7 +25,7 @@ public class EmployeeManager {
         Scanner inputID = new Scanner(System.in);
         String id = inputID.nextLine();
         while (indexOfEmployeeById(id)!=-1){
-            System.err.print("\nId đã tồn tại, mời nhập lại: ");
+            System.err.print("Id đã tồn tại, mời nhập lại: ");
             return getIdByInput();
         }
         return id;
@@ -142,6 +142,7 @@ public class EmployeeManager {
     public void setCommonInfo(Employee employee){
 
         System.out.println("id: ");
+        employee.setId("");
         String id = getIdByInput();
         employee.setId(id);
 
@@ -382,7 +383,7 @@ public class EmployeeManager {
         } catch (InterruptedException e) {
             System.err.println("Something interrupted the thread!");
         }
-        System.out.println("Nhập phím bất kì để quay lại menu");
+        System.out.println("\nNhấn phím Enter để quay lại menu");
         Scanner input = new Scanner(System.in);
         String i=input.nextLine();
     }

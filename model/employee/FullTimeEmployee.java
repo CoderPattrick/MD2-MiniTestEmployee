@@ -1,5 +1,4 @@
-package Employee;
-import java.util.ArrayList;
+package employee;
 
 public class FullTimeEmployee extends Employee{
     double bonus;
