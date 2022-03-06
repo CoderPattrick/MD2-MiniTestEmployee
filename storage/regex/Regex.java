@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Regex {
-    private final String regexID="^[fp]\\d{1,}";
+    private final String regexID="^[fp]\\d+$";
     private final String regexPhone="^0\\d{9,}";
-    private final String regexName="[a-zA-Z\s]";
+    private final String regexName="^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$";
     private final String regexAge="\\d{1,3}";
     private final String regexBonus="\\d{0,10000}";
     private final String regexMinus="\\d{0,10000}";

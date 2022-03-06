@@ -1,10 +1,12 @@
 import employee.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import regex.Regex;
 
 public class EmployeeManager {
     private static IOManager IOtool = new IOManagerEmp();
     private static ArrayList<Employee> controllerList = IOManagerEmp.savedList;
+    private static Regex regexTool=new Regex();
 
     public void addEmployee(){
         int choice;
@@ -24,46 +26,122 @@ public class EmployeeManager {
     public String getIdByInput(){
         Scanner inputID = new Scanner(System.in);
         String id = inputID.nextLine();
-        while (indexOfEmployeeById(id)!=-1){
+        if (indexOfEmployeeById(id)!=-1){
             System.err.print("Id đã tồn tại, mời nhập lại: ");
+            return getIdByInput();
+        }
+        if (!regexTool.isValidId(id)){
+            System.err.print("Id không hợp lệ! Mời nhập lại: ");
             return getIdByInput();
         }
         return id;
     }
+    public String getNameByInput(){
+        Scanner input = new Scanner(System.in);
+        String name = input.nextLine();
+        if (!regexTool.isValidName(name)){
+            System.err.print("Tên không hợp lệ! Mời nhập lại: ");
+            return getNameByInput();
+        }
+        return name;
+    }
+    public int getAgeByInput(){
+        Scanner input = new Scanner(System.in);
+        int age = input.nextInt();
+        if (!regexTool.isValidAge(age+"")){
+            System.err.print("Tuổi không hợp lệ! Mời nhập lại: ");
+            return getAgeByInput();
+        }
+        return age;
+    }
+    public String getPhoneByInput(){
+        Scanner input = new Scanner(System.in);
+        String phone = input.nextLine();
+        if (!regexTool.isValidPhone(phone)){
+            System.err.print("Số điện thoại không hợp lệ! Mời nhập lại: ");
+            return getPhoneByInput();
+        }
+        return phone;
+    }
+    public String getMailByInput(){
+        Scanner input = new Scanner(System.in);
+        String mail = input.nextLine();
+        if (!regexTool.isValidMail(mail+"")){
+            System.err.print("Mail không hợp lệ! Mời nhập lại: ");
+            return getMailByInput();
+        }
+        return mail;
+    }
+    public double getBonusByInput(){
+        Scanner input = new Scanner(System.in);
+        long bonus = input.nextLong();
+        if (!regexTool.isValidBonus(bonus+"")){
+            System.err.print("Bonus không hợp lệ! Mời nhập lại: ");
+            return getBonusByInput();
+        }
+        return bonus;
+    }
+    public double getMinusByInput(){
+        Scanner input = new Scanner(System.in);
+        long minus = input.nextLong();
+        if (!regexTool.isValidMinus(minus+"")){
+            System.err.print("Minus không hợp lệ! Mời nhập lại: ");
+            return getMinusByInput();
+        }
+        return minus;
+    }
+    public double getBaseByInput(){
+        Scanner input = new Scanner(System.in);
+        long base = input.nextLong();
+        if (!regexTool.isValidBase(base+"")){
+            System.err.print("Base-Salary không hợp lệ! Mời nhập lại: ");
+            return getBaseByInput();
+        }
+        return base;
+    }
+    public double getWorkHourByInput(){
+        Scanner input = new Scanner(System.in);
+        int workHour = input.nextInt();
+        if (!regexTool.isValidWorkHour(workHour+"")){
+            System.err.print("Số giờ làm không hợp lệ! Mời nhập lại: ");
+            return getWorkHourByInput();
+        }
+        return workHour;
+    }
+
     public Employee getEmployeeByInput(int choice){
         Employee newEmployee;
-        System.out.println("id: ");
+        System.out.print("id: ");
         String id = getIdByInput();
 
-        System.out.println("name: ");
-        Scanner inputName = new Scanner(System.in);
-        String name = inputName.nextLine();
-        System.out.println("age: ");
-        Scanner inputAge = new Scanner(System.in);
-        int age = inputAge.nextInt();
-        System.out.println("phone: ");
-        Scanner inputPhone = new Scanner(System.in);
-        String phone = inputPhone.nextLine();
-        System.out.println("email: ");
-        Scanner inputMail = new Scanner(System.in);
-        String mail = inputMail.nextLine();
+        System.out.print("name: ");
+        String name = getNameByInput();
+
+        System.out.print("age: ");
+        int age = getAgeByInput();
+
+        System.out.print("phone: ");
+        String phone = getPhoneByInput();
+
+        System.out.print("email: ");
+        String mail = getMailByInput();
 
         if(choice==1){
-            System.out.println("bonus: ");
-            Scanner inputBonus = new Scanner(System.in);
-            double bonus = inputBonus.nextDouble();
-            System.out.println("minus: ");
-            Scanner inputMinus = new Scanner(System.in);
-            double minus = inputMinus.nextDouble();
-            System.out.println("base-salary: ");
-            Scanner inputBase = new Scanner(System.in);
-            double base = inputBase.nextDouble();
+            System.out.print("bonus: ");
+            double bonus = getBonusByInput();
+
+            System.out.print("minus: ");
+            double minus = getMinusByInput();
+
+            System.out.print("base-salary: ");
+            double base = getBaseByInput();
+
             newEmployee = new FullTimeEmployee(id,name,age,phone,mail,bonus,minus,base);
         }
         else {
-            System.out.println("workHour: ");
-            Scanner inputWorkHour = new Scanner(System.in);
-            double workHour = inputWorkHour.nextDouble();
+            System.out.print("workHour: ");
+            double workHour = getWorkHourByInput();
+
             newEmployee = new PartTimeEmployee(id,name,age,phone,mail,workHour);
         }
         return newEmployee;
@@ -78,9 +156,7 @@ public class EmployeeManager {
         Employee employee= employee=controllerList.get(index);
         return employee;
     }
-//    public int indexOfEmployee(Employee employee){
-//        return controllerList.indexOf(employee);
-//    }
+
     public int indexOfEmployeeById(String id){
         for (int i = 0; i < controllerList.size(); i++) {
             String elementID =controllerList.get(i).getId();
