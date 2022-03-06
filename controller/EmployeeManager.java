@@ -1,5 +1,6 @@
-import employee.*;
+import Employee.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import regex.Regex;
 
@@ -47,7 +48,14 @@ public class EmployeeManager {
     }
     public int getAgeByInput(){
         Scanner input = new Scanner(System.in);
-        int age = input.nextInt();
+        int age=0;
+        try{
+            age = input.nextInt();
+        }
+        catch (InputMismatchException e){
+            System.err.println("Tuổi không hợp lệ! Mời nhập lại: ");
+            return getAgeByInput();
+        }
         if (!regexTool.isValidAge(age+"")){
             System.err.print("Tuổi không hợp lệ! Mời nhập lại: ");
             return getAgeByInput();
@@ -74,7 +82,14 @@ public class EmployeeManager {
     }
     public double getBonusByInput(){
         Scanner input = new Scanner(System.in);
-        long bonus = input.nextLong();
+        long bonus = 0;
+        try{
+            bonus = input.nextLong();
+        }
+        catch (InputMismatchException e){
+            System.err.print("Bonus không hợp lệ! Mời nhập lại: ");
+            return getBonusByInput();
+        }
         if (!regexTool.isValidBonus(bonus+"")){
             System.err.print("Bonus không hợp lệ! Mời nhập lại: ");
             return getBonusByInput();
@@ -83,7 +98,14 @@ public class EmployeeManager {
     }
     public double getMinusByInput(){
         Scanner input = new Scanner(System.in);
-        long minus = input.nextLong();
+        long minus =0;
+        try{
+            minus = input.nextLong();
+        }
+        catch (InputMismatchException e){
+            System.err.print("Minus không hợp lệ! Mời nhập lại: ");
+            return getMinusByInput();
+        }
         if (!regexTool.isValidMinus(minus+"")){
             System.err.print("Minus không hợp lệ! Mời nhập lại: ");
             return getMinusByInput();
@@ -92,7 +114,14 @@ public class EmployeeManager {
     }
     public double getBaseByInput(){
         Scanner input = new Scanner(System.in);
-        long base = input.nextLong();
+        long base = 0;
+        try{
+            base = input.nextLong();
+        }
+        catch (InputMismatchException e){
+            System.err.print("Base-Salary không hợp lệ! Mời nhập lại: ");
+            return getBaseByInput();
+        }
         if (!regexTool.isValidBase(base+"")){
             System.err.print("Base-Salary không hợp lệ! Mời nhập lại: ");
             return getBaseByInput();
@@ -101,7 +130,14 @@ public class EmployeeManager {
     }
     public double getWorkHourByInput(){
         Scanner input = new Scanner(System.in);
-        int workHour = input.nextInt();
+        int workHour;
+        try{
+            workHour = input.nextInt();
+        }
+        catch (InputMismatchException e){
+            System.err.print("Số giờ làm không hợp lệ! Mời nhập lại: ");
+            return getWorkHourByInput();
+        }
         if (!regexTool.isValidWorkHour(workHour+"")){
             System.err.print("Số giờ làm không hợp lệ! Mời nhập lại: ");
             return getWorkHourByInput();

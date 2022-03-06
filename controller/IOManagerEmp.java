@@ -1,18 +1,14 @@
-import employee.Employee;
-
+import Employee.*;
 import java.io.*;
 import java.util.ArrayList;
 
 public class IOManagerEmp implements IOManager<Employee> {
     private static IOManagerEmp IOtool = new IOManagerEmp();
     public static ArrayList<Employee> savedList = IOtool.readFile();
-    public ArrayList<Employee> getSavedList(){
-        return savedList;
-    }
     private static final String SAVE_PATH = "storage\\employeeList.datdz";
     public void writeFile(ArrayList<Employee> list){
-        FileOutputStream output = null;
-        ObjectOutputStream writer = null;
+        FileOutputStream output;
+        ObjectOutputStream writer;
         try {
             output = new FileOutputStream(SAVE_PATH);
         } catch (FileNotFoundException ex) {

@@ -1,4 +1,4 @@
-package employee;
+package Employee;
 
 public class FullTimeEmployee extends Employee{
     double bonus;

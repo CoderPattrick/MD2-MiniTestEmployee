@@ -7,11 +7,11 @@ public class Regex {
     private final String regexID="^[fp]\\d+$";
     private final String regexPhone="^0\\d{9,}";
     private final String regexName="^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$";
-    private final String regexAge="\\d{1,3}";
-    private final String regexBonus="\\d{0,10000}";
-    private final String regexMinus="\\d{0,10000}";
-    private final String regexBaseSalary="\\d{1000,}";
-    private final String regexWorkHour="\\d{12,48}";
+    private final String regexAge="\\d{2}";
+    private final String regexBonus="\\d{0,4}";
+    private final String regexMinus="\\d{0,4}";
+    private final String regexBaseSalary="\\d{4,}";
+    private final String regexWorkHour="\\d{2}";
     private final String regexMail="^[\\w]+[\\w]*@[\\w]+(\\.[\\w]+)$";
 
     public boolean isValidId(String id){

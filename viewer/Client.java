@@ -1,10 +1,10 @@
-import employee.Employee;
+import Employee.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client {
     private static EmployeeManager controller = new EmployeeManager();
-    private static IOManager IOtool = new IOManagerEmp();
+//    private static IOManager IOtool = new IOManagerEmp();
     private static ArrayList<Employee> clientList = IOManagerEmp.savedList;
 
     public static void main(String[] args) {
